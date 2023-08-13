@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-family: 'Press Start 2P', cursive; /* Apply retro video game font */
+      font-size: 24px;
+    }
+
+    h2 {
+      font-family: 'Press Start 2P', cursive; /* Apply retro video game font */
+      font-size: 16px;
+    }
+
+    .button-container {
+      margin-top: 20px;
+    }
+
+    .sound-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #6d6d6d;
+      border: none;
+      color: white;
+    }
+
+    .sound-button:hover {
+      background-color: #555;
+    }
+
+    #imageContainer {
+      margin-top: 20px;
+    }
+
+    #imageContainer img {
+      width: 200px; /* Specify the width you want */
+      height: auto; /* Maintain aspect ratio */
+      display: none;
+    }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Sound Buttons</title>
+</head>
+<body>
+  <h1>Apple me!!</h1>
+  <h2>hlo! I'm Apple.</h2>
+  <h2>What? do you want me to do???</h2>
+  <div class="button-container">
+    <button class="sound-button" id="button1">Cry!</button>
+    <button class="sound-button" id="button2">Dance</button>
+    <button class="sound-button" id="button3">loVE you!!</button>
+  </div>
+  <div id="imageContainer">
+    <img id="displayedImage" src="" alt="Dancing Apple">
+  </div>
+  <audio id="audio1" src="cry.mp3.mp3"></audio>
+  <audio id="audio2" src="dance.mp3"></audio>
+  <audio id="audio3" src="AW.mp3"></audio>
+  <h2>note: plz DOn't make me cry!</h2>
+  <script>
+    var displayedImage = document.getElementById("displayedImage");
+    var playingAudio = null; // To keep track of the currently playing audio element
+    
+    // Function to toggle audio play/pause and display an image when a button is clicked
+    function togglePlayPauseAudio(soundId, imageUrl) {
+      var audio = document.getElementById(soundId);
+      
+      if (playingAudio && playingAudio !== audio) {
+        playingAudio.pause();
+      }
+      
+      if (audio.paused) {
+        audio.currentTime = 0; // Reset audio to the beginning
+        audio.play();
+        displayedImage.src = imageUrl;
+        displayedImage.style.display = "block";
+        playingAudio = audio;
+      } else {
+        audio.pause();
+        displayedImage.style.display = "none";
+        playingAudio = null;
+      }
+    }
+
+    // Button event listeners
+    document.getElementById("button1").addEventListener("click", function() {
+      togglePlayPauseAudio("audio1", "https://media.tenor.com/Ac__StaRbAYAAAAi/cry-sad.gif");
+    });
+
+    document.getElementById("button2").addEventListener("click", function() {
+      togglePlayPauseAudio("audio2", "https://media.tenor.com/sJsAvcRRjRwAAAAC/spooky-apple-dance.gif");
+    });
+
+    document.getElementById("button3").addEventListener("click", function() {
+      togglePlayPauseAudio("audio3", "https://i.kym-cdn.com/photos/images/newsfeed/001/662/705/0bd.png");
+    });
+  </script>
+</body>
+</html>
